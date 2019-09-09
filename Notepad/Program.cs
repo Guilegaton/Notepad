@@ -1,6 +1,9 @@
-﻿using SimpleInjector;
+﻿using Notepad.DAL.Interfaces;
+using Notepad.DAL.Repositories;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +31,8 @@ namespace Notepad
             _container = new Container();
 
             _container.Register<MainMenuForm>();
+            _container.Register<ApplicationContext>();
+            _container.Register<IFileRepository, FileRepository>();
 
             _container.Verify();
         }
