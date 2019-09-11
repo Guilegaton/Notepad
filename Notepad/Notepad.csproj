@@ -73,6 +73,7 @@
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="DAL\Interfaces\IFileRepository.cs" />
     <Compile Include="DAL\Repositories\FileRepository.cs" />
+    <Compile Include="Helpers\CompressionHelper.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="SharedKernel\Interfaces\IRepository.cs" />
     <Compile Include="Forms\MainMenuForm.cs">
