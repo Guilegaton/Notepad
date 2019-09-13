@@ -1,5 +1,6 @@
 ﻿using Notepad.DAL.Interfaces;
 using Notepad.DAL.Repositories;
+using Notepad.Forms;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace Notepad
         {
             _container = new Container();
 
+            _container.Register<FileSelectForm>();
+            _container.Register<FileNameForm>();
             _container.Register<MainMenuForm>();
             _container.Register<ApplicationContext>();
             _container.Register<IFileRepository, FileRepository>();

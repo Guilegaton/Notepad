@@ -73,6 +73,19 @@
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="DAL\Interfaces\IFileRepository.cs" />
     <Compile Include="DAL\Repositories\FileRepository.cs" />
+    <Compile Include="DataProcessingService.cs" />
+    <Compile Include="Forms\FileNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileNameForm.Designer.cs">
+      <DependentUpon>FileNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileSelectForm.Designer.cs">
+      <DependentUpon>FileSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\CompressionHelper.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="SharedKernel\Interfaces\IRepository.cs" />
@@ -85,6 +98,9 @@
     <Compile Include="SharedKernel\Models\BaseEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\MainMenuForm.resx">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
