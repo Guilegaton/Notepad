@@ -17,6 +17,8 @@ namespace Notepad.SharedKernel.Interfaces
 
         Task UpdateAsync(T item);
 
+        Task<bool> IsEntityExists(long id);
+
         #endregion Public Methods
     }
 }

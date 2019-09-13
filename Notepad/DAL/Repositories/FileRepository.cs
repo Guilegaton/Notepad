@@ -49,6 +49,16 @@ namespace Notepad.DAL.Repositories
             return await _context.Files.FirstOrDefaultAsync(file => file.Id == id);
         }
 
+        public async Task<bool> IsEntityExists(long id)
+        {
+            return await _context.Files.AnyAsync(file => file.Id == id);
+        }
+
+        public async Task<bool> IsFileExists(string fileName)
+        {
+            return await _context.Files.AnyAsync(file => file.Name == fileName);
+        }
+
         public async Task UpdateAsync(File item)
         {
             _context.Entry(item).State = EntityState.Modified;
