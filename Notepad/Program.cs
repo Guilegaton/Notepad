@@ -2,6 +2,7 @@
 using Notepad.DAL.Repositories;
 using Notepad.Forms;
 using SimpleInjector;
+using SimpleInjector.Lifestyles;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,18 +25,23 @@ namespace Notepad
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-            Application.Run(_container.GetInstance<MainMenuForm>());
+            using (AsyncScopedLifestyle.BeginScope(_container))
+            {
+                Application.Run(_container.GetInstance<MainMenuForm>());
+            }
         }
 
         private static void Bootstrap()
         {
             _container = new Container();
+            _container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
-            _container.Register<FileSelectForm>();
-            _container.Register<FileNameForm>();
-            _container.Register<MainMenuForm>();
-            _container.Register<ApplicationContext>();
-            _container.Register<IFileRepository, FileRepository>();
+            _container.Register<IFileRepository, FileRepository>(Lifestyle.Scoped);
+            _container.Register<DataProcessingService>(Lifestyle.Scoped);
+            _container.Register<FileSelectForm>(Lifestyle.Scoped);
+            _container.Register<FileNameForm>(Lifestyle.Scoped);
+            _container.Register<MainMenuForm>(Lifestyle.Scoped);
+            _container.Register<DAL.ApplicationContext>(Lifestyle.Scoped);
 
             _container.Verify();
         }
