@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Helpers\CompressionHelper.cs" />
     <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="SharedKernel\Interfaces\IRepository.cs" />
     <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
@@ -98,6 +99,12 @@
     <Compile Include="SharedKernel\Models\BaseEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FileNameForm.resx">
+      <DependentUpon>FileNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileSelectForm.resx">
+      <DependentUpon>FileSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>

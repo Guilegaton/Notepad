@@ -28,12 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.FileNameTB = new System.Windows.Forms.TextBox();
+            this.SaveBTN = new System.Windows.Forms.Button();
+            this.CancelBTN = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // FileNameTB
+            // 
+            this.FileNameTB.Location = new System.Drawing.Point(12, 12);
+            this.FileNameTB.Name = "FileNameTB";
+            this.FileNameTB.Size = new System.Drawing.Size(256, 20);
+            this.FileNameTB.TabIndex = 0;
+            // 
+            // SaveBTN
+            // 
+            this.SaveBTN.Location = new System.Drawing.Point(12, 49);
+            this.SaveBTN.Name = "SaveBTN";
+            this.SaveBTN.Size = new System.Drawing.Size(75, 23);
+            this.SaveBTN.TabIndex = 1;
+            this.SaveBTN.Text = "Save";
+            this.SaveBTN.UseVisualStyleBackColor = true;
+            this.SaveBTN.Click += new System.EventHandler(this.SaveBTN_Click);
+            // 
+            // CancelBTN
+            // 
+            this.CancelBTN.Location = new System.Drawing.Point(187, 49);
+            this.CancelBTN.Name = "CancelBTN";
+            this.CancelBTN.Size = new System.Drawing.Size(81, 23);
+            this.CancelBTN.TabIndex = 2;
+            this.CancelBTN.Text = "Cancel";
+            this.CancelBTN.UseVisualStyleBackColor = true;
+            // 
+            // FileNameForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(280, 84);
+            this.Controls.Add(this.CancelBTN);
+            this.Controls.Add(this.SaveBTN);
+            this.Controls.Add(this.FileNameTB);
+            this.Name = "FileNameForm";
             this.Text = "FileNameForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox FileNameTB;
+        private System.Windows.Forms.Button SaveBTN;
+        private System.Windows.Forms.Button CancelBTN;
     }
 }

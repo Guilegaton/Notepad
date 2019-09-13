@@ -1,26 +1,68 @@
 ﻿using Notepad.Models;
-using Notepad.SharedKernel.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Notepad.Forms
 {
     public partial class FileSelectForm : Form
     {
-        private readonly IRepository<File> _repository;
+        #region Protected Internal Fields
 
-        public FileSelectForm(IRepository<File> repository)
+        protected internal FileViewModel SelectedFile;
+
+        #endregion Protected Internal Fields
+
+        #region Private Fields
+
+        private readonly DataProcessingService _processingService;
+
+        #endregion Private Fields
+
+        #region Public Constructors
+
+        public FileSelectForm(DataProcessingService processingService)
         {
-            _repository = repository;
+            _processingService = processingService;
 
             InitializeComponent();
+            FillData();
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public void UpdateData()
+        {
+            FillData();
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private async void FilesLSB_DoubleClick(object sender, EventArgs e)
+        {
+            var chosenElement = (KeyValuePair<long, string>?)FilesLSB.SelectedItem;
+            if (chosenElement != null)
+            {
+                SelectedFile = await _processingService.LoadFile(chosenElement.Value.Key);
+                this.Close();
+            }
+        }
+
+        private void FillData()
+        {
+            Dictionary<long, string> files = _processingService.GetListOfFileNames();
+            if (files.Count > 0)
+            {
+                FilesLSB.DataSource = new BindingSource(files, null);
+                FilesLSB.DisplayMember = "Value";
+                FilesLSB.ValueMember = "Key";
+            }
+        }
+
+        #endregion Private Methods
     }
 }
