@@ -1,5 +1,6 @@
 ﻿using Notepad.DAL.Interfaces;
 using Notepad.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Notepad.DAL.Repositories
         #region Private Fields
 
         private readonly ApplicationContext _context;
+        private bool _isDisposed = false;
 
         #endregion Private Fields
 
@@ -37,6 +39,16 @@ namespace Notepad.DAL.Repositories
             _context.Files.Remove(item);
 
             await _context.SaveChangesAsync();
+        }
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
         }
 
         public IQueryable<File> GetAll()

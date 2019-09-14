@@ -1,17 +1,19 @@
 ﻿using Notepad.DAL.Interfaces;
 using Notepad.Helpers;
 using Notepad.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Notepad
 {
-    public class DataProcessingService
+    public class DataProcessingService : IDisposable
     {
         #region Private Fields
 
         private readonly IFileRepository _repository;
+        private bool _isDisposed = false;
 
         #endregion Private Fields
 
@@ -89,6 +91,16 @@ namespace Notepad
             }
 
             return result;
+        }
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+                _repository.Dispose();
+                GC.SuppressFinalize(this);
+            }
         }
 
         #endregion Public Methods
