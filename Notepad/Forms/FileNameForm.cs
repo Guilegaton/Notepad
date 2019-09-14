@@ -6,6 +6,12 @@ namespace Notepad.Forms
 {
     public partial class FileNameForm : Form
     {
+        #region Protected Internal Fields
+
+        protected internal bool IsFileSaved;
+
+        #endregion Protected Internal Fields
+
         #region Private Fields
 
         private FileViewModel _currentFile;
@@ -28,6 +34,7 @@ namespace Notepad.Forms
 
         public void ProcessTextData(string text)
         {
+            IsFileSaved = false;
             _currentFile = new FileViewModel
             {
                 TextData = text
@@ -45,6 +52,7 @@ namespace Notepad.Forms
                 _currentFile.Name = FileNameTB.Text;
                 if (await _processingService.SaveFile(_currentFile))
                 {
+                    IsFileSaved = true;
                     this.Close();
                     FileNameTB.Clear();
                 }
@@ -59,6 +67,13 @@ namespace Notepad.Forms
             }
         }
 
+        private void CancelBTN_Click(object sender, EventArgs e)
+        {
+            _currentFile = null;
+            this.Close();
+        }
+
         #endregion Private Methods
+
     }
 }

@@ -58,6 +58,7 @@
             this.CancelBTN.TabIndex = 2;
             this.CancelBTN.Text = "Cancel";
             this.CancelBTN.UseVisualStyleBackColor = true;
+            this.CancelBTN.Click += new System.EventHandler(this.CancelBTN_Click);
             // 
             // FileNameForm
             // 

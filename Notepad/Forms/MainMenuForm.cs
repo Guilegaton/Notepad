@@ -74,6 +74,9 @@ namespace Notepad.Forms
                     _currentFile = null;
                     MainRTB.Clear();
                 }
+
+                _deleteFileFrom.SelectedFile = null;
+                _openFileForm.SelectedFile = null;
             }
         }
 
@@ -83,7 +86,10 @@ namespace Notepad.Forms
             {
                 _saveFileForm.ProcessTextData(MainRTB.Text);
                 _saveFileForm.ShowDialog();
-                MainRTB.Clear();
+                if (_saveFileForm.IsFileSaved)
+                {
+                    MainRTB.Clear();
+                }
             }
             else if (_currentFile != null)
             {

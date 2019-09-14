@@ -54,6 +54,7 @@ namespace Notepad.Forms
 
         private void FillData()
         {
+            FilesLSB.DataSource = new string[0];
             Dictionary<long, string> files = _processingService.GetListOfFileNames();
             if (files.Count > 0)
             {
